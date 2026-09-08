@@ -56,7 +56,7 @@ bot-apicola-malka/
 ├── docs/
 │   └── TDD-0001-bot-instagram-malka.md
 └── src/
-    ├── week1_simple_chain.py
-    └── week2_rag_esqueleto.py
+    ├── simple_chain.py
+    └── rag_squeleton.py
 ```
 
