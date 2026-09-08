@@ -9,7 +9,7 @@ responde consultas con información real del negocio (RAG), consulta
 catálogo/stock (tool), recuerda el contexto de la charla (memoria), y
 deriva a una persona cuando no puede resolver algo (escalamiento).
 
-Diseño técnico completo en [`docs/TDD-0001-bot-instagram-malka.md`](docs/TDDs/TDD-0001.md).
+Diseño técnico completo en [`docs/TDD-0001.md`](docs/TDDs/TDD-0001.md).
 
 ## Instalación
 
@@ -27,14 +27,14 @@ https://aistudio.google.com/apikey
 
 | Semana | Script | Qué demuestra | Estado |
 |---|---|---|---|
-| 1 | `src/week1_simple_chain.py` | Prompt + modelo + output parser (LCEL) | ✅ hecho |
-| 2 | `src/week2_rag_esqueleto.py` | RAG sobre FAQs del negocio | 🚧 en progreso (faltan TODO) |
+| 1 | `src/simple_chain.py` | Prompt + modelo + output parser (LCEL) | ✅ hecho |
+| 2 | `src/rag_skeleton.py` | RAG sobre FAQs del negocio | 🚧 en progreso (faltan TODO) |
 | 3 | *(próximo)* | Memoria de conversación + tool de catálogo | ⏳ pendiente |
 | 4 | *(próximo)* | Agente completo (router) | ⏳ pendiente |
 | 5 | `src/demo_local.py` (plan B) + integración real | Demo local + canal de Instagram (Meta) | ⏳ pendiente |
 
 ```bash
-python src/week1_simple_chain.py
+python src/simple_chain.py
 ```
 
 ## Arquitectura: dos formas de hablarle al mismo bot
@@ -48,15 +48,19 @@ si la integración de Meta falla justo el día de la exposición.
 ## Estructura
 
 ```
-bot-apicola-malka/
+malka_bot/
 ├── .gitignore
 ├── requirements.txt
 ├── .env.example        # copiar a .env con tu key real (no subir a git)
 ├── README.md
 ├── docs/
-│   └── TDD-0001-bot-instagram-malka.md
+│   └── TDDs/
+│        └── TDD-0001.md
+│   └── observaciones/
+│        └── semana1.md
+│
 └── src/
     ├── simple_chain.py
-    └── rag_squeleton.py
+    └── rag_skeleton.py
 ```
 
