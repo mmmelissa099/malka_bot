@@ -9,7 +9,7 @@ responde consultas con información real del negocio (RAG), consulta
 catálogo/stock (tool), recuerda el contexto de la charla (memoria), y
 deriva a una persona cuando no puede resolver algo (escalamiento).
 
-Diseño técnico completo en [`docs/TDD-0001.md`](docs/TDDs/TDD-0001.md).
+Diseño técnico completo en [`docs/TDDs`](docs/TDDs).
 
 ## Instalación
 
@@ -28,13 +28,16 @@ https://aistudio.google.com/apikey
 | Semana | Script | Qué demuestra | Estado |
 |---|---|---|---|
 | 1 | `src/simple_chain.py` | Prompt + modelo + output parser (LCEL) | ✅ hecho |
-| 2 | `src/rag_skeleton.py` | RAG sobre FAQs del negocio | 🚧 en progreso (faltan TODO) |
+| 2 | `src/skeleton_rag.py` | RAG sobre FAQs del negocio | ✅ hecho |
 | 3 | *(próximo)* | Memoria de conversación + tool de catálogo | ⏳ pendiente |
 | 4 | *(próximo)* | Agente completo (router) | ⏳ pendiente |
 | 5 | `src/demo_local.py` (plan B) + integración real | Demo local + canal de Instagram (Meta) | ⏳ pendiente |
 
 ```bash
 python src/simple_chain.py
+```
+```bash
+python src/skeleton_rag.py
 ```
 
 ## Arquitectura: dos formas de hablarle al mismo bot
@@ -56,11 +59,13 @@ malka_bot/
 ├── docs/
 │   └── TDDs/
 │        └── TDD-0001.md
+|         └── TDD-0001.md
 │   └── observaciones/
-│        └── semana1.md
+│        └── semana2.md
+|
 │
 └── src/
     ├── simple_chain.py
-    └── rag_skeleton.py
+    └── skeleton_rag.py
 ```
 

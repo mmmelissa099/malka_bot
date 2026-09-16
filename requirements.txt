@@ -2,3 +2,6 @@ langchain>=0.3.0
 langchain-core>=0.3.0
 langchain-google-genai>=4.0.0
 python-dotenv>=1.0.0
+langchain-chroma
+chromadb
+langchain-groq>=1.1.0
