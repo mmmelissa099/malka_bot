@@ -15,3 +15,5 @@ src/faqs_data.py
 .DS_Store
 
 docs/contexto-productivo.md
+
+src/stock_data.py
