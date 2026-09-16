@@ -29,16 +29,10 @@ https://aistudio.google.com/apikey
 |---|---|---|---|
 | 1 | `src/simple_chain.py` | Prompt + modelo + output parser (LCEL) | ✅ hecho |
 | 2 | `src/skeleton_rag.py` | RAG sobre FAQs del negocio | ✅ hecho |
-| 3 | *(próximo)* | Memoria de conversación + tool de catálogo | ⏳ pendiente |
+| 3 | `src/skeleton_memory.py` y `src/tool.py`| Memoria de conversación + tool de catálogo | ✅ hecho |
 | 4 | *(próximo)* | Agente completo (router) | ⏳ pendiente |
 | 5 | `src/demo_local.py` (plan B) + integración real | Demo local + canal de Instagram (Meta) | ⏳ pendiente |
 
-```bash
-python src/simple_chain.py
-```
-```bash
-python src/skeleton_rag.py
-```
 
 ## Arquitectura: dos formas de hablarle al mismo bot
 
@@ -59,13 +53,20 @@ malka_bot/
 ├── docs/
 │   └── TDDs/
 │        └── TDD-0001.md
-|         └── TDD-0001.md
+|        
 │   └── observaciones/
-│        └── semana2.md
+│        └── semana1.md
+|        └── semana2.md
+|        └── semana3.md
 |
 │
 └── src/
     ├── simple_chain.py
     └── skeleton_rag.py
+    └── skeleton_memory.py
+    └── tools.py
+    └── stock_data_example.py
+    └── faqs_data_example.py
+
 ```
 
