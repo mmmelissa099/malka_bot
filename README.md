@@ -1,6 +1,6 @@
 # Bot de Instagram — Cabaña Apícola Malka
 
-Caso práctico de LangChain para el Trabajo Práctico Integrador de
+Caso práctico de LangChain y LangGraph para el Trabajo Práctico Integrador de
 Administración de Sistemas de Información (UTN FRLP, 2026).
 
 Automatiza la atención de mensajes directos de Instagram para Cabaña
@@ -14,12 +14,11 @@ Diseño técnico completo en [`docs/TDDs`](docs/TDDs).
 ## Instalación
 
 ```bash
-python -m venv venv
-source venv/bin/activate        # en Windows: venv\Scripts\activate
+python -m venv .venv
+source .venv/bin/activate        # en Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env            # y pegá tu API key adentro
+cp .env.example .env             # y pegá tus API keys adentro
 ```
-
 Conseguí la API key gratis (sin tarjeta) en:
 https://aistudio.google.com/apikey
 
@@ -27,10 +26,10 @@ https://aistudio.google.com/apikey
 
 | Semana | Script | Qué demuestra | Estado |
 |---|---|---|---|
-| 1 | `src/simple_chain.py` | Prompt + modelo + output parser (LCEL) | ✅ hecho |
-| 2 | `src/skeleton_rag.py` | RAG sobre FAQs del negocio | ✅ hecho |
-| 3 | `src/skeleton_memory.py` y `src/tool.py`| Memoria de conversación + tool de catálogo | ✅ hecho |
-| 4 | *(próximo)* | Agente completo (router) | ⏳ pendiente |
+| 1 | `experiments/simple_chain.py` | Prompt + modelo + output parser (LCEL) | ✅ hecho |
+| 2 | `experiments/skeleton_rag.py` | RAG sobre FAQs del negocio | ✅ hecho |
+| 3 | `experiments/skeleton_memory.py` y `src/tool.py`| Memoria de conversación + tool de catálogo | ✅ hecho |
+| 4 | src/agent.py | Agente completo (router) | ✅ hecho  |
 | 5 | `src/demo_local.py` (plan B) + integración real | Demo local + canal de Instagram (Meta) | ⏳ pendiente |
 
 
@@ -42,31 +41,31 @@ real por Instagram (vía la API de Meta) y otro por terminal
 (`src/demo_local.py`, Semana 5) sin duplicar lógica — sirve como plan B
 si la integración de Meta falla justo el día de la exposición.
 
-## Estructura
-
 ```
 malka_bot/
 ├── .gitignore
 ├── requirements.txt
-├── .env.example        # copiar a .env con tu key real (no subir a git)
+├── .env.example              # plantilla de variables de entorno
 ├── README.md
-├── docs/
-│   └── TDDs/
-│        └── TDD-0001.md
-|        
-│   └── observaciones/
-│        └── semana1.md
-|        └── semana2.md
-|        └── semana3.md
-|
 │
-└── src/
-    ├── simple_chain.py
-    └── skeleton_rag.py
-    └── skeleton_memory.py
-    └── tools.py
-    └── stock_data_example.py
-    └── faqs_data_example.py
+├── docs/                     # Documentación y seguimiento del TPI
+│   ├── TDDs/
+│   │   └── TDD-0001.md
+│   └── observaciones/
+│       ├── semana1.md
+│       └── ...
+│
+├── experiments/              # Prototipos evolutivos (Semanas 1 a 3)
+│   ├── simple_chain.py
+│   ├── skeleton_rag.py
+│   └── skeleton_memory.py
+│
+└── src/                      # Código de producción (Semana 4+)
+    ├── agent.py              # Agente ReAct principal (LangGraph)
+    ├── tools.py              # Herramientas del agente (stock, FAQs, escalado)
+    ├── rag.py                # Configuración de Chroma y Embeddings
+    ├── prompts.py            # System Prompts centralizados
+    ├── stock_data_example.py # Datos de prueba (estructura)
+    └── faqs_data_example.py  # Datos de prueba (estructura)
 
 ```
-
