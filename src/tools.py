@@ -1,23 +1,8 @@
-"""
-Semana 3 - Tool de disponibilidad
-====================================
-
-Objetivo: entender que es un tool en LangChain (una funcion que el
-LLM decide si llamar o no - no se ejecuta siempre, a diferencia del
-retriever del RAG), y armar uno real que compare la fecha de hoy
-contra la disponibilidad vigente de cada producto.
-
-Todavia NO se conecta a ningun agente/LLM - eso es la Semana 4. Por
-ahora se prueba como pieza aislada, con .invoke() directo.
-
-Completa los TODO vos misma.
-"""
-
+from langchain_core.tools import tool
+from stock_data import disponibilidad
+from rag import retriever, format_docs
 import datetime
 
-from langchain_core.tools import tool
-
-from stock_data import disponibilidad
 
 
 @tool
@@ -40,14 +25,29 @@ def consultar_disponibilidad(producto: str) -> str:
     else:
         proxima_fecha = disponibilidad[producto]["proxima_fecha_disponible"]
         return "El producto {} estará disponible a partir del {}.".format(producto, proxima_fecha)
+    
+
+@tool
+def buscar_en_faqs(pregunta: str) -> str:
+    """
+    Busca en las FAQs de Malka la respuesta a la pregunta del cliente.
+    Este tool es útil para preguntas sobre productos, precios, envíos,
+    diferencias entre celda real y reina fecundada, razas, etc.
+    """
+    return format_docs(retriever.invoke(pregunta))
 
 
-
-if __name__ == "__main__":
-    # Los tools de LangChain se prueban con .invoke() y un dict con
-    # los argumentos - no se llaman como una funcion comun de Python
-    # (consultar_disponibilidad("celdas") NO va a funcionar igual).
-    print(consultar_disponibilidad.invoke({"producto": "celdas"}))
-    print(consultar_disponibilidad.invoke({"producto": "reinas_nacional"}))
-    print(consultar_disponibilidad.invoke({"producto": "reinas_exportacion"}))
-    print(consultar_disponibilidad.invoke({"producto": "producto_que_no_existe"}))
+@tool
+def escalar_a_humano(motivo: str) -> str:
+    """
+    Usa este tool cuando el cliente pida explicitamente hablar con
+    una persona, cuando no puedas resolver su consulta con
+    buscar_en_faqs ni consultar_disponibilidad, o cuando pida una
+    recomendacion de que producto o raza le conviene (eso requiere
+    criterio que no esta disponible en las FAQs).
+    """
+    print(f"[ESCALADO] motivo: {motivo}")
+    return (
+        "No tengo informacion suficiente para responder eso. "
+        "En breve te va a contestar una persona del equipo."
+    )
