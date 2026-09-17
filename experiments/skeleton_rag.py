@@ -23,7 +23,7 @@ embeddings = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001")
 
 vectorstore = Chroma.from_documents(faqs, embeddings)
 
-retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+retriever = vectorstore.as_retriever(search_kwargs={"k": 6})
 
 
 def format_docs(docs):
