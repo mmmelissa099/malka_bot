@@ -17,3 +17,9 @@ src/faqs_data.py
 docs/contexto-productivo.md
 
 src/stock_data.py
+
+.ipynb_checkpoints/
+*.log
+Thumbs.db
+pytest_cache/
+.ruff_cache/
