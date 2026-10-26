@@ -11,7 +11,8 @@ def consultar_disponibilidad(producto: str) -> str:
     """
     Consulta si Malka esta tomando pedidos ahora mismo para un
     producto, o informa cuando se abre el proximo cupo si todavia
-    no esta disponible.
+    no esta disponible. Uso EXCLUSIVO para preguntas sobre FECHAS
+    de apertura de temporada.
 
     Args:
         producto: uno de "celdas", "reinas_nacional" o
@@ -31,8 +32,19 @@ def consultar_disponibilidad(producto: str) -> str:
 def buscar_en_faqs(pregunta: str) -> str:
     """
     Busca en las FAQs de Malka la respuesta a la pregunta del cliente.
-    Este tool es útil para preguntas sobre productos, precios, envíos,
-    diferencias entre celda real y reina fecundada, razas, etc.
+    Util para preguntas sobre productos, precios, envios, cantidad
+    minima de pedido, condiciones de retiro en persona, diferencias
+    entre celda real y reina fecundada, razas, etc.
+ 
+    Si el cliente pregunta si puede pedir cierta cantidad, o sobre
+    cualquier condicion de compra (minimos, retiro, zona de envio),
+    usa este tool - no consultar_disponibilidad, que es solo para
+    fechas de apertura de temporada.
+ 
+    IMPORTANTE: si la pregunta del cliente es ambigua o depende de
+    algo mencionado antes en la conversacion (por ejemplo "cual es
+    la diferencia", sin aclarar entre que), no la busques tal cual -
+    reformulala primero incluyendo el contexto explicito.
     """
     return format_docs(retriever.invoke(pregunta))
 

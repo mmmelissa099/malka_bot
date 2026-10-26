@@ -15,7 +15,11 @@ if not os.getenv("GOOGLE_API_KEY") or not os.getenv("GROQ_API_KEY"):
     raise RuntimeError("Falta GOOGLE_API_KEY o GROQ_API_KEY en tu .env")
 
 
-llm = ChatGroq(model="openai/gpt-oss-120b", temperature=0.2)
+llm = ChatGroq(
+    model="openai/gpt-oss-120b",
+    model_kwargs={"include_reasoning": False},
+    temperature=0.2
+)
 
 tools = [buscar_en_faqs, consultar_disponibilidad, escalar_a_humano]
 
